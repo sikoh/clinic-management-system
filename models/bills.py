@@ -7,11 +7,12 @@ import uuid
 from datetime import datetime
 import marshmallow as ma
 
-from db import db
 
-from models.visits import Visit
+from models.visits import Visits
+from db import *
 
 # app = Flask(__name__)
+# db = SQLAlchemy(app)
 
 # # database_host = "127.0.0.1:5432"
 # # database_name = "clinic"
@@ -22,7 +23,8 @@ from models.visits import Visit
 # ma = Marshmallow(app)
 
 
-class Bill(db.Model):
+
+class Bills(db.Model):
     __tablename__ = "bills"
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     visit_id = db.Column(UUID(as_uuid=True), db.ForeignKey('visits.id', ondelete="CASCADE"), nullable=False)
@@ -37,9 +39,9 @@ class Bill(db.Model):
         self.updated_at = updated_at
         self.status = status
 
-class BillSchema(ma.Schema):
+class BillsSchema(ma.Schema):
     class Meta:
         fields = ['id','first_name', 'last-name', 'sex', 'phone', 'dob', 'active']
 
-bill_schema = BillSchema()
-bills_schema = BillSchema(many=True)
+bill_schema = BillsSchema()
+bills_schema = BillsSchema(many=True)

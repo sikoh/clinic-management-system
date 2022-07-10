@@ -1,5 +1,5 @@
-# from flask import request, Flask, jsonify
-# from flask_sqlalchemy import SQLAlchemy
+from flask import request, Flask, jsonify
+from flask_sqlalchemy import SQLAlchemy
 # from flask_marshmallow import Marshmallow
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import or_
@@ -16,9 +16,9 @@ import marshmallow as ma
 
 # db = SQLAlchemy(app)
 # ma = Marshmallow(app)
-from db import db 
+from db import * 
 
-class Patient(db.Model):
+class Patients(db.Model):
     __tablename__ = "patients"
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     first_name = db.Column(db.String(), nullable = False)
@@ -28,7 +28,8 @@ class Patient(db.Model):
     email = db.Column(db.String(), nullable = False, unique=True)
     password = db.Column(db.String(), nullable = False)
     dob = db.Column(db.DateTime(), nullable = False)
-    visit = db.relationship('Visit', cascade="all,delete", backref = 'patient', lazy=True)
+    
+    visit = db.relationship('Visits', cascade="all,delete", backref = 'patients', lazy=True)
 
     def __init__(self, first_name,last_name, sex, phone, email, password, dob):
         self.first_name = first_name
@@ -39,9 +40,9 @@ class Patient(db.Model):
         self.password = password
         self.dob = dob
 
-class PatientSchema(ma.Schema):
+class PatientsSchema(ma.Schema):
     class Meta:
         fields = ['id','first_name', 'last-name', 'sex', 'phone', 'dob', 'active']
 
-patient_schema = PatientSchema()
-patients_schema = PatientSchema(many=True)
+patient_schema = PatientsSchema()
+patients_schema = PatientsSchema(many=True)

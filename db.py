@@ -1,19 +1,19 @@
+
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from lib.loaders import load_models
-from flask import Flask
+from flask_marshmallow import Marshmallow
+import marshmallow as ma
 
-__all__ = ('db', 'init_db')
 
-# our global DB ojbect (imported by models and views)
-db = SQLAlchemy()
 
-# support importing a functioning session query
-query = db.session.query
+app = Flask(__name__)
 
-def init_db(app=None, db=None):
-   """Initializes the global database object used by the app."""
-   if isinstance(app, Flask) and isinstance(db, SQLAlchemy):
-      load_models()
-      db.init_app(app)
-   else:
-      raise ValueError('Cannot init DB without db and app objects.')
+
+
+database_host = "127.0.0.1:5432"
+database_name = "clinic"
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{database_host}/{database_name}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+ma = Marshmallow(app)

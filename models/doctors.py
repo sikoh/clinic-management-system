@@ -5,10 +5,10 @@
 from sqlalchemy.dialects.postgresql import UUID
 # from sqlalchemy import or_
 import uuid
-from datetime import datetime
 import marshmallow as ma
 
-from db import db
+
+from db import *
 # app = Flask(__name__)
 
 # database_host = "127.0.0.1:5432"
@@ -20,7 +20,7 @@ from db import db
 # ma = Marshmallow(app)
 
 
-class Doctor(db.Model):
+class Doctors(db.Model):
     __tablename__ = "doctors"
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     first_name = db.Column(db.String(), nullable = False)
@@ -31,11 +31,12 @@ class Doctor(db.Model):
     sex = db.Column(db.String())
     phone = db.Column(db.String())
     active = db.Column(db.Boolean(), nullable = False, default = True)
-    visit = db.relationship('Visit', cascade="all,delete", backref = 'doctor', lazy=True)
+    
+    visit = db.relationship('Visits', cascade="all,delete", backref = 'doctors', lazy=True)
 
 
 
-    def __init__(self, first_name,last_name, specialty, email, password, sex, phone, active):
+    def __init__(self, first_name,last_name, specialty, email, password, sex, phone, active = True):
         self.first_name = first_name
         self.last_name = last_name
         self.specialty = specialty
@@ -43,11 +44,11 @@ class Doctor(db.Model):
         self.password = password
         self.sex = sex
         self.phone = phone
-        self.active = active
+        self.ative = active
 
-class DoctorSchema(ma.Schema):
+class DoctorsSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'first_name', 'last-name', 'specialty', 'email', 'sex', 'phone', 'active']
+        fields = ['id', 'first_name', 'last-name', 'specialty', 'email']
 
-patient_schema = DoctorSchema()
-patients_schema = DoctorSchema(many=True)
+doctor_schema = DoctorsSchema()
+doctors_schema = DoctorsSchema(many=True)
