@@ -6,15 +6,6 @@ import marshmallow as ma
 
 
 from db import *
-# app = Flask(__name__)
-
-# database_host = "127.0.0.1:5432"
-# database_name = "clinic"
-# app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{database_host}/{database_name}'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# db = SQLAlchemy(app)
-# ma = Marshmallow(app)
 
 
 class Visits(db.Model):
