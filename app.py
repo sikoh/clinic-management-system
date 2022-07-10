@@ -29,8 +29,6 @@ from models.visits import Visits
 
 # from db import *
 
-
-
 def create_all():
    with app.app_context():
       db.create_all()
@@ -57,6 +55,20 @@ def create_all():
 @app.route('/doctor/add', methods=['POST'])
 def doctor_add():
     return endpoints.doctor_add()
+
+
+@app.route('/doctor/list', methods=['GET'])
+def doctor_list():
+    return endpoints.doctor_list()
+
+
+@app.route('/patient/add', methods=['POST'])
+def patient_add():
+    return endpoints.patient_add()
+
+@app.route('/patient/list', methods=['GET'])
+def patient_list():
+    return endpoints.patient_list()
 
 
 

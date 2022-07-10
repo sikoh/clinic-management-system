@@ -48,7 +48,7 @@ class Doctors(db.Model):
 
 class DoctorsSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'first_name', 'last-name', 'specialty', 'email']
+        fields = ['id', 'first_name', 'last_name', 'specialty', 'email']
 
 doctor_schema = DoctorsSchema()
 doctors_schema = DoctorsSchema(many=True)

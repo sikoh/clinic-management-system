@@ -1,33 +1,35 @@
 from db import *
 
-from models.doctors import Doctors, doctor_schema
+from models.patients import Patients, patient_schema
 
 def patient_add():
    form = request.form
 
-   fields = ['first_name','last_name', 'specialty', 'email', 'password', 'sex', 'phone']
-   req_fields = ['first_name','last_name', 'specialty', 'email', 'password']
+   fields = ['first_name','last_name', 'sex', 'phone', 'email', 'dob']
+
    values = []
    
    for field in fields:
       form_value = form.get(field)
-      if form_value in req_fields and form_value == " ":
+      if form_value == "" or form_value == None:
          return jsonify (f'{field} is required field'), 400
 
       values.append(form_value)
    
+
    first_name = form.get('first_name')
    last_name = form.get('last_name')
-   specialty = form.get('specialty')
-   email = form.get('email')
-   password = form.get('password')
    sex = form.get('sex')
    phone = form.get('phone')
+   email = form.get('email')
+   dob = form.get('dob')
+   
+  
 
 
-   new_doctor_record = Doctors(first_name, last_name, specialty, email, password, sex, phone)
+   new_patient_record = Patients(first_name, last_name, sex, phone, email, dob)
 
-   db.session.add(new_doctor_record)
+   db.session.add(new_patient_record)
    db.session.commit()
    
-   return jsonify('Doctor Added', doctor_schema.dump(new_doctor_record)), 200
+   return jsonify('Patient Added', patient_schema.dump(new_patient_record)), 200

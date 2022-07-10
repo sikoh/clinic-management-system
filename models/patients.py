@@ -26,23 +26,21 @@ class Patients(db.Model):
     sex = db.Column(db.String(), nullable = False)
     phone = db.Column(db.String(), nullable = False)
     email = db.Column(db.String(), nullable = False, unique=True)
-    password = db.Column(db.String(), nullable = False)
     dob = db.Column(db.DateTime(), nullable = False)
     
     visit = db.relationship('Visits', cascade="all,delete", backref = 'patients', lazy=True)
 
-    def __init__(self, first_name,last_name, sex, phone, email, password, dob):
+    def __init__(self, first_name,last_name, sex, phone, email, dob):
         self.first_name = first_name
         self.last_name = last_name
         self.sex = sex
         self.phone = phone
         self.email = email
-        self.password = password
         self.dob = dob
 
 class PatientsSchema(ma.Schema):
     class Meta:
-        fields = ['id','first_name', 'last-name', 'sex', 'phone', 'dob', 'active']
+        fields = ['id','first_name', 'last_name', 'sex', 'phone', 'email','dob']
 
 patient_schema = PatientsSchema()
 patients_schema = PatientsSchema(many=True)
