@@ -62,6 +62,14 @@ def doctor_list():
     return endpoints.doctor_list()
 
 
+@app.route("/doctor/<doctor_id>", methods=["GET"])
+def doctor_get_by_id(doctor_id):
+    return endpoints.doctor_get_by_id(doctor_id)
+
+
+
+
+
 @app.route('/patient/add', methods=['POST'])
 def patient_add():
     return endpoints.patient_add()
@@ -70,7 +78,9 @@ def patient_add():
 def patient_list():
     return endpoints.patient_list()
 
-
+@app.route("/patient/<patient_id>", methods=["GET"])
+def patient_get_by_id(patient_id):
+    return endpoints.patient_get_by_id(patient_id)
 
 
 
