@@ -68,6 +68,10 @@ def doctor_get_by_id(doctor_id):
 def doctor_update(doctor_id):
     return endpoints.doctor_update(doctor_id)
 
+@app.route("/doctor/delete/<doctor_id>", methods=["DELETE"])
+def doctor_delete(doctor_id):
+    return endpoints.doctor_delete(doctor_id)
+
 
 
 
@@ -87,6 +91,10 @@ def patient_get_by_id(patient_id):
 @app.route("/patient/update/<patient_id>", methods=["POST"])
 def patient_update(patient_id):
     return endpoints.patient_update(patient_id)
+
+@app.route("/patient/delete/<patient_id>", methods=["DELETE"])
+def patient_delete(patient_id):
+    return endpoints.patient_delete(patient_id)
 
 
 
