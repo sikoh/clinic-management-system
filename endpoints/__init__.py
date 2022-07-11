@@ -10,3 +10,6 @@ from .patient_update import patient_update
 from .patient_list import patient_list
 from .patient_get_by_id import patient_get_by_id
 from .patient_delete import patient_delete
+
+
+from .visit_add import visit_add

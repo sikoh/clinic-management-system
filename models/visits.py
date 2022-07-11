@@ -13,6 +13,8 @@ class Visits(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     doctor_id = db.Column(UUID(as_uuid=True), db.ForeignKey('doctors.id', ondelete="CASCADE"), nullable=False)
     patient_id = db.Column(UUID(as_uuid=True), db.ForeignKey('patients.id', ondelete="CASCADE"), nullable=False)
+    complaints = db.Column(db.String(), nullable = False)
+    findings = db.Column(db.String(), nullable = False)
     date = db.Column(db.DateTime(), nullable = False)
     status = db.Column(db.String(), nullable = False)
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
@@ -25,9 +27,11 @@ class Visits(db.Model):
     
     
 
-    def __init__(self, doctor_id, patient_id, date, status, created_at, updated_at):
+    def __init__(self, doctor_id, patient_id, complaints, findings, date, status, created_at, updated_at):
         self.doctor_id = doctor_id
         self.patient_id = patient_id
+        self.complaints = complaints
+        self.findings = findings
         self.date = date
         self.status = status
         self.created_at = created_at
@@ -36,7 +40,7 @@ class Visits(db.Model):
 
 class VisitsSchema(ma.Schema):
     class Meta:
-        fields = ['id','first_name', 'last-name', 'sex', 'phone', 'dob', 'active']
+        fields = ['id','doctor_id', 'patient_id', 'complains', 'findings', 'date', 'stutus', 'created_at', 'updated_at']
 
 visit_schema = VisitsSchema()
 visits_schema = VisitsSchema(many=True)

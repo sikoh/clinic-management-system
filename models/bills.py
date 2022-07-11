@@ -25,7 +25,7 @@ class Bills(db.Model):
 
 class BillsSchema(ma.Schema):
     class Meta:
-        fields = ['id','first_name', 'last-name', 'sex', 'phone', 'dob', 'active']
+        fields = ['id','visit_id', 'created_at', 'updated_at', 'status']
 
 bill_schema = BillsSchema()
 bills_schema = BillsSchema(many=True)

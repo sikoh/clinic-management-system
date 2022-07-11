@@ -18,16 +18,8 @@ db.create_all()
 ma = Marshmallow(app)
 
 
-from models.bills import Bills
 from models.doctors import Doctors
-from models.medications import Medications
-from models.patients import Patients
-from models.prescriptions import Prescriptions
-from models.procedures import Procedures
-from models.visit_procedures import VisitProcedures
-from models.visits import Visits
 
-# from db import *
 
 def create_all():
    with app.app_context():
@@ -41,7 +33,7 @@ def create_all():
          while password == '' or password is None:
             password = input(' Enter a password for Super Admin:')
 
-         record = Doctors('Super', 'Admin', 'admin', 'clinic-admin@testemail.com', password,'U', 1231231234,1)
+         record = Doctors('Super', 'Admin', 'admin', 'clinic-admin@testemail.com', password,'U', 1231231234, 1)
 
 
          db.session.add(record)
@@ -98,6 +90,10 @@ def patient_delete(patient_id):
 
 
 
+
+@app.route('/visit/add', methods=['POST'])
+def visit_add():
+    return endpoints.visit_add()
 
 
 
