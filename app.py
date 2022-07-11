@@ -56,15 +56,17 @@ def create_all():
 def doctor_add():
     return endpoints.doctor_add()
 
-
 @app.route('/doctor/list', methods=['GET'])
 def doctor_list():
     return endpoints.doctor_list()
 
-
 @app.route("/doctor/<doctor_id>", methods=["GET"])
 def doctor_get_by_id(doctor_id):
     return endpoints.doctor_get_by_id(doctor_id)
+
+@app.route("/doctor/update/<doctor_id>", methods=["POST"])
+def doctor_update(doctor_id):
+    return endpoints.doctor_update(doctor_id)
 
 
 
@@ -81,6 +83,10 @@ def patient_list():
 @app.route("/patient/<patient_id>", methods=["GET"])
 def patient_get_by_id(patient_id):
     return endpoints.patient_get_by_id(patient_id)
+
+@app.route("/patient/update/<patient_id>", methods=["POST"])
+def patient_update(patient_id):
+    return endpoints.patient_update(patient_id)
 
 
 
