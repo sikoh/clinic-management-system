@@ -1,11 +1,9 @@
 
-from sqlalchemy.dialects.postgresql import UUID
-import uuid
 from datetime import datetime
-import marshmallow as ma
-
 
 from db import *
+from models.doctors import Doctors, DoctorsSchema, doctor_schema
+from models.patients import Patients, PatientsSchema, patient_schema 
 
 
 class Visits(db.Model):
@@ -41,6 +39,10 @@ class Visits(db.Model):
 class VisitsSchema(ma.Schema):
     class Meta:
         fields = ['id','doctor_id', 'patient_id', 'complains', 'findings', 'date', 'stutus', 'created_at', 'updated_at']
+        # fields = ['id','doctor', 'patient', 'complains', 'findings', 'date', 'stutus', 'created_at', 'updated_at']
+        # doctor = ma.fields.Nested(DoctorsSchema(only = ('first_name', 'last_name')))
+        # patient = ma.fields.Nested(PatientsSchema(only = ('first_name', 'last_name')))
+
 
 visit_schema = VisitsSchema()
 visits_schema = VisitsSchema(many=True)
