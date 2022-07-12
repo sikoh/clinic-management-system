@@ -64,6 +64,14 @@ def doctor_update(doctor_id):
 def doctor_delete(doctor_id):
     return endpoints.doctor_delete(doctor_id)
 
+@app.route("/doctor/activate/<doctor_id>", methods=["PUT"])
+def doctor_activate(doctor_id):
+    return endpoints.doctor_activate(doctor_id)
+
+@app.route("/doctor/deactivate/<doctor_id>", methods=["PUT"])
+def doctor_deactivate(doctor_id):
+    return endpoints.doctor_deactivate(doctor_id)
+
 
 
 
