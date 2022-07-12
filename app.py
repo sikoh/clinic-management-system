@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from sqlalchemy.dialects.postgresql import UUID
-import marshmallow as ma
+# import marshmallow as ma
 import uuid
 from datetime import datetime
 import endpoints
@@ -102,6 +102,14 @@ def patient_delete(patient_id):
 @app.route('/visit/add', methods=['POST'])
 def visit_add():
     return endpoints.visit_add()
+
+@app.route('/visit/list', methods=['GET'])
+def visit_list():
+    return endpoints.visit_list()
+
+@app.route("/visit/<visit_id>", methods=["GET"])
+def visit_get_by_id(visit_id):
+    return endpoints.visit_get_by_id(visit_id)
 
 
 

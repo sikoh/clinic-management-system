@@ -15,3 +15,5 @@ from .patient_delete import patient_delete
 
 
 from .visit_add import visit_add
+from .visit_list import visit_list
+from .visit_get_by_id import visit_get_by_id

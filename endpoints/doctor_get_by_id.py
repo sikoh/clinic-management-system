@@ -9,4 +9,4 @@ def doctor_get_by_id(doctor_id):
    if doctor_record:
         return jsonify(doctor_schema.dump(doctor_record))
 
-   return jsonify(f'User with doctor_id {doctor_id} not found'), 404
+   return jsonify(f'Doctor with doctor_id {doctor_id} not found'), 404
