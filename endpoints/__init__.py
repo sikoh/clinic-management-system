@@ -5,6 +5,7 @@ from .doctor_get_by_id import doctor_get_by_id
 from .doctor_delete import doctor_delete
 from .doctor_deactivate import doctor_deactivate
 from .doctor_activate import doctor_activate
+from .doctor_search import doctor_search
 
 
 from .patient_add import patient_add
@@ -17,3 +18,4 @@ from .patient_delete import patient_delete
 from .visit_add import visit_add
 from .visit_list import visit_list
 from .visit_get_by_id import visit_get_by_id
+from .visit_delete import visit_delete

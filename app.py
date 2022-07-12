@@ -72,7 +72,9 @@ def doctor_activate(doctor_id):
 def doctor_deactivate(doctor_id):
     return endpoints.doctor_deactivate(doctor_id)
 
-
+@app.route("/doctor/search/<search_term>", methods=["GET"])
+def get_records_by_search(search_term):
+    return endpoints.doctor_search(search_term)
 
 
 
@@ -110,6 +112,10 @@ def visit_list():
 @app.route("/visit/<visit_id>", methods=["GET"])
 def visit_get_by_id(visit_id):
     return endpoints.visit_get_by_id(visit_id)
+
+@app.route("/visit/delete/<visit_id>", methods=["DELETE"])
+def visit_delete(visit_id):
+    return endpoints.visit_delete(visit_id)
 
 
 
