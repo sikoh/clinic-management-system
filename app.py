@@ -98,6 +98,10 @@ def patient_update(patient_id):
 def patient_delete(patient_id):
     return endpoints.patient_delete(patient_id)
 
+@app.route("/patient/search/<search_term>", methods=["GET"])
+def patients_search(search_term):
+    return endpoints.patient_search(search_term)
+
 
 
 
@@ -116,6 +120,10 @@ def visit_get_by_id(visit_id):
 @app.route("/visit/delete/<visit_id>", methods=["DELETE"])
 def visit_delete(visit_id):
     return endpoints.visit_delete(visit_id)
+
+@app.route("/visit/search/<search_term>", methods=["GET"])
+def visit_search(search_term):
+    return endpoints.visit_search(search_term)
 
 
 
