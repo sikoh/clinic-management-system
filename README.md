@@ -1,4 +1,4 @@
-# clinic-management-system
+# Clinic Management System
 
 Implementation in progress...
 
