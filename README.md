@@ -2,7 +2,7 @@
 
 Implementation in progress...
 
-This is a fun side project designed and developed for learning purposes.
+This is a fun side project designed and developed by Silvana Koharian
 
 Used skills:
 * Software Design & Architecture
